@@ -10,16 +10,13 @@ angular.module('todoApp.services', [])
 .factory('notesFactory', function() {
     return {
         put: function(note) {
-            localStorage.setItem('todo' + (Object.keys(localStorage).length + 1), note);
+            var notes = this.get();
+            notes.push(note);
+            localStorage.setItem('todo', JSON.stringify(notes));
         },
         get: function() {
-            var notes = [];
-            var keys = Object.keys(localStorage);
-
-            for(var i = 0; i < keys.length; i++) {
-                notes.push(localStorage.getItem(keys[i]));
-            }
-
+            var notes;
+            notes = JSON.parse(localStorage.getItem('todo')) || [];
             return notes;
         }
     };
