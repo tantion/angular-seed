@@ -2,9 +2,10 @@
 
 /* Filters */
 
-angular.module('todoApp.filters', []).
-  filter('interpolate', ['version', function(version) {
-    return function(text) {
-      return String(text).replace(/\%VERSION\%/mg, version);
-    };
-  }]);
+angular.module('todoApp.filters', [])
+    .filter('truncate', function() {
+        return function(input, length) {
+            input = String(input);
+            return (input.length > length ? input.substring(0, length) : input);
+        };
+    });
