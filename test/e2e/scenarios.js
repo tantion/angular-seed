@@ -1,42 +1,34 @@
 'use strict';
 
 /* https://github.com/angular/protractor/blob/master/docs/getting-started.md */
+/* jshint ignore:start */
 
-describe('my app', function() {
+describe('todoApp', function() {
 
-  browser.get('index.html');
+    browser.get('index.html');
 
-  it('should automatically redirect to /view1 when location hash/fragment is empty', function() {
-    expect(browser.getLocationAbsUrl()).toMatch("/view1");
-  });
-
-
-  describe('view1', function() {
-
-    beforeEach(function() {
-      browser.get('index.html#/view1');
+    it('should visited', function() {
+        var app = element.all(by.css('[ng-app="todoApp"]'));
+        app.count().then(function (len) {
+            expect(len).toEqual(1);
+        });
     });
 
+    describe('app action', function() {
 
-    it('should render view1 when user navigates to /view1', function() {
-      expect(element.all(by.css('[ng-view] p')).first().getText()).
-        toMatch(/partial for view 1/);
+        beforeEach(function() {
+            browser.get('index.html');
+        });
+
+        it('should add one note', function() {
+            var note = element(by.model('note')),
+                btn = element(by.id('add-note'));
+            note.sendKeys('note3');
+            btn.click();
+
+            var list = element.all(by.css('.list-group .list-group-item')).last();
+            expect(list.getText()).toEqual('note3');
+        });
+
     });
-
-  });
-
-
-  describe('view2', function() {
-
-    beforeEach(function() {
-      browser.get('index.html#/view2');
-    });
-
-
-    it('should render view2 when user navigates to /view2', function() {
-      expect(element.all(by.css('[ng-view] p')).first().getText()).
-        toMatch(/partial for view 2/);
-    });
-
-  });
 });
