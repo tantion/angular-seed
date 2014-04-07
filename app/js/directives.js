@@ -3,9 +3,12 @@
 /* Directives */
 
 
-angular.module('todoApp.directives', []).
-  directive('appVersion', ['version', function(version) {
-    return function(scope, elm, attrs) {
-      elm.text(version);
+angular.module('todoApp.directives', [])
+.directive('customColor', function () {
+    return {
+        restrict: 'A',
+        link: function(scope, elem, attrs) {
+            elem.css({'background-color': attrs.customColor});
+        }
     };
-  }]);
+});

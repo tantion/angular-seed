@@ -1,19 +1,17 @@
 'use strict';
 
 /* jasmine specs for directives go here */
+/* jshint ignore:start */
 
-//describe('directives', function() {
-  //beforeEach(module('myApp.directives'));
+describe('directives', function() {
+    beforeEach(module('todoApp'));
 
-  //describe('app-version', function() {
-    //it('should print current version', function() {
-      //module(function($provide) {
-        //$provide.value('version', 'TEST_VER');
-      //});
-      //inject(function($compile, $rootScope) {
-        //var element = $compile('<span app-version></span>')($rootScope);
-        //expect(element.text()).toEqual('TEST_VER');
-      //});
-    //});
-  //});
-//});
+    describe('customer-color', function() {
+        it('should use customer color', function() {
+            inject(function($compile, $rootScope) {
+                var element = $compile('<span custom-color="rgb(0, 0, 0)"></span>')($rootScope);
+                expect(element.css('background-color')).toEqual('rgb(0, 0, 0)');
+            });
+        });
+    });
+});
