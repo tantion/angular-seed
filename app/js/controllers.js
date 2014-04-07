@@ -2,10 +2,7 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', [])
-  .controller('MyCtrl1', [function() {
+angular.module('todoApp.controllers', [])
+.controller('TodoController', [function() {
 
-  }])
-  .controller('MyCtrl2', [function() {
-
-  }]);
+}]);
